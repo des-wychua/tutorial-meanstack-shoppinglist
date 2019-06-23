@@ -1,0 +1,70 @@
+Organisation
+```
+{
+    _id: String
+    name: String
+    street1: String
+    street2: String
+    city: String
+    state: String
+    postalCode: String
+    country: String
+    industry: String
+    url: String
+    logo: String
+    description: String
+    status: String
+    createdDate: String
+    originDate: String
+    admin: [client_id: String]
+    member: [client_id: String]
+}
+```
+
+User
+```
+```
+{
+    _id: String
+    username: String
+    email: String
+    password: String
+    firstName: String
+    lastName: String
+    mobilePhone: String
+    identification: String
+    identificationType: String
+    nationality: String
+    height: Number
+    weight: Number
+    transportMode: [String]
+    workExperience: [
+        {
+            companyName: String
+            summary: String
+            startDate: String
+            endDate: String
+            current: Boolean
+        }
+    ]
+    language: [
+        {
+            name: String
+            fluency: Number
+        }
+    ]
+    uniformSize: String
+    profilePicture: String
+    introVideo: String
+    preferredJobLocation: String
+    billing: String
+    street1: String
+    street2: String
+    city: String
+    state: String
+    postalCode: String
+    country: String
+}
+```
+
+Client
