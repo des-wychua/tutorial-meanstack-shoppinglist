@@ -17,19 +17,24 @@ router.get('/items', (req, res, next)=>{
 
 //inserting new data
 router.post('/item', (req, res, next)=>{
-    let newShoppingItem = new Item({
-        itemName: req.body.itemName,
-        itemQuantity: req.body.itemQuantity,
-        itemBought: req.body.itemBought
-    });
-    newShoppingItem.save((err, item)=>{
-        if(err){
-            res.json(err);
-        }
-        else{
-            res.json({msg: 'Item has been added successfully'});
-        }
-    })
+    if(Item.findOne({itemName: req.body.itemName}) != null){
+        res.json({msg: "Item already exist."})
+    }
+    else{
+        let newShoppingItem = new Item({
+            itemName: req.body.itemName,
+            itemQuantity: req.body.itemQuantity,
+            itemBought: req.body.itemBought
+        });
+        newShoppingItem.save((err, item)=>{
+            if(err){
+                res.json(err);
+            }
+            else{
+                res.json({msg: 'Item has been added successfully'});
+            }
+        })
+    }
 });
 
 //updating data
@@ -54,9 +59,18 @@ router.put('/item/:id', (req, res, next)=>{
     );
 });
 
-//deleting data
-router.delete('/delete_route', (req, res, next)=>{
-    //TODO
+//deleting one data
+router.delete('/item/:id', (req, res, next)=>{
+    Item.deleteOne(
+        {_id: req.params.id},
+        function(err, result){
+            if(err){
+                res.json(err);
+            }
+            else{
+                res.json({msg: "Item has been removed"})
+            }
+        });
 });
 
 module.exports = router;
